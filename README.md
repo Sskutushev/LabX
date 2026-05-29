@@ -1,37 +1,36 @@
-# LabX — Developer Landing (test task)
+# LabX — Developer Landing (Enterprise-ready test task)
 
-Single-page developer landing with working API form, email delivery, optional Telegram notifications, and a small AI helper.
+Production-oriented developer landing with typed backend/frontend, secure API form pipeline, AI helper, Docker, CI, and layered architecture.
 
 ## Stack
 
-- Frontend: HTML, CSS, vanilla JavaScript
-- Backend: Node.js + Express
+- Frontend: HTML, CSS, TypeScript (modular client)
+- Backend: Node.js + Express + TypeScript
 - Email: Nodemailer (SMTP)
 - AI: OpenAI API (optional) with local fallback summary mode
-- Tests: Node built-in test runner
-- CI: GitHub Actions (lint + test + docker build)
+- Validation: Zod (typed env config with fail-fast)
+- Security: Helmet, CORS policy, request size limits, honeypot, rate-limit
+- Logs: Pino + request correlation (`X-Request-Id`)
+- Tests: unit + integration + E2E (Playwright)
+- CI: GitHub Actions (lint + typecheck + tests + docker build)
 
 ## Features
 
 - Adaptive landing page with sections: about, workflow, cases, contacts
 - Contact form with states: loading, success, error
 - API validation and error handling
-- Basic anti-spam (honeypot) and API rate limiting for contact endpoint
+- Basic anti-spam (honeypot) and API rate limiting for contact endpoint (Redis-capable)
 - Email to site owner + copy email to user
 - Optional Telegram notification
 - AI helper: quick summary generation for form comment
 
 ## Project structure
 
-- `public/` static frontend assets
-- `public/js/` modular frontend layers (`api`, `ui`, `i18n`, `theme`, `form-controller`, `main`)
-- `server/routes` route definitions
-- `server/controllers` HTTP controllers
-- `server/services` business logic
-- `server/repositories` external providers (SMTP, Telegram, OpenAI)
-- `server/middleware` cross-cutting middleware (request-id, rate-limit, error handlers)
-- `server/config` runtime config parsing
-- `tests/` unit + API integration tests
+- `src/client/` typed frontend modules
+- `src/server/` typed backend layers (app, services, validation, config)
+- `public/` static assets and compiled client JS
+- `tests/` unit + integration tests
+- `e2e/` browser E2E tests
 
 ## Quick start with Docker
 
@@ -52,7 +51,13 @@ docker compose up --build
 npm install
 ```
 
-2. Create `.env` from `.env.example` (you only put your own credentials, no чужие токены):
+2. Build typed server/client:
+
+```bash
+npm run build
+```
+
+3. Create `.env` from `.env.example` (use only your own credentials):
 
 ```env
 PORT=3000
@@ -69,15 +74,20 @@ TELEGRAM_CHAT_ID=
 
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
+
+CORS_ORIGIN=*
+CONTACT_RATE_LIMIT_WINDOW_MS=60000
+CONTACT_RATE_LIMIT_MAX=8
+REDIS_URL=
 ```
 
-3. Start dev server:
+4. Start dev server:
 
 ```bash
 npm run dev
 ```
 
-4. Open `http://localhost:3000`
+5. Open `http://localhost:3000`
 
 ## Tests
 
@@ -85,10 +95,15 @@ npm run dev
 npm test
 ```
 
+```bash
+npm run test:e2e
+```
+
 ## Lint and build checks
 
 ```bash
 npm run lint
+npm run typecheck
 npm run build:docker
 ```
 

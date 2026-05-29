@@ -14,7 +14,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY package.json ./package.json
 COPY server ./server
 COPY public ./public
-COPY .env.example ./.env.example
 
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \

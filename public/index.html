@@ -1,33 +1,43 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LabX | Developer Landing</title>
+    <title>Sergey Kutushev | Fullstack Developer</title>
     <meta
       name="description"
-      content="Лендинг-презентация разработчика: стек, опыт, подход, кейсы и рабочая форма обратной связи."
+      content="Fullstack Developer (React/TypeScript/Node.js): кейсы, подход, API, AI и рабочая форма обратной связи."
     />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header class="hero">
       <nav class="nav container">
-        <div class="brand">Sskutushev.dev</div>
+        <div class="brand">Sskutushev</div>
         <div class="links">
-          <a href="#about">Обо мне</a>
-          <a href="#workflow">Как работаю</a>
-          <a href="#cases">Кейсы</a>
-          <a href="#contact">Контакты</a>
+          <a href="#about" data-i18n="nav.about">Обо мне</a>
+          <a href="#workflow" data-i18n="nav.workflow">Как работаю</a>
+          <a href="#cases" data-i18n="nav.cases">Кейсы</a>
+          <a href="#contact" data-i18n="nav.contact">Контакты</a>
+        </div>
+        <div class="tools">
+          <button type="button" class="ghost" id="lang-ru">RU</button>
+          <button type="button" class="ghost" id="lang-en">EN</button>
+          <button type="button" class="ghost" id="theme-toggle">Theme</button>
         </div>
       </nav>
-      <div class="container hero-content reveal">
-        <p class="kicker">Frontend + API + AI workflow</p>
-        <h1>Превращаю требования в понятный, рабочий продукт</h1>
-        <p>
-          Разработка интерфейсов с реальной логикой, API-интеграциями и
-          аккуратной архитектурой. Без магии, с результатом.
-        </p>
+      <div class="container hero-layout reveal">
+        <div class="hero-content">
+          <p class="kicker" data-i18n="hero.kicker">Fullstack Developer (React / TypeScript / Node.js)</p>
+          <h1 data-i18n="hero.title">Строю продуктовые интерфейсы для высоких нагрузок и роста бизнеса</h1>
+          <p data-i18n="hero.subtitle">11+ лет опыта. Веду фичи end-to-end: от архитектуры и API до релиза, аналитики и поддержки пользователей.</p>
+          <div class="chips">
+            <span>React</span><span>TypeScript</span><span>Next.js</span><span>Node.js</span>
+          </div>
+        </div>
+        <figure class="hero-photo-wrap">
+          <img class="hero-photo" src="/me-portfolio.jpg" alt="Фото разработчика" />
+        </figure>
       </div>
       <div class="bg-shape bg-shape-1"></div>
       <div class="bg-shape bg-shape-2"></div>
@@ -35,62 +45,60 @@
 
     <main>
       <section id="about" class="section container reveal">
-        <h2>Обо мне</h2>
+        <h2 data-i18n="about.title">Обо мне</h2>
         <div class="grid two">
           <article class="card">
-            <h3>Стек</h3>
-            <p>JavaScript/TypeScript, React, Node.js, REST API, HTML, CSS/SCSS.</p>
+            <h3 data-i18n="about.stackTitle">Стек</h3>
+            <p data-i18n="about.stackText">React, TypeScript (strict), Next.js, Node.js, PostgreSQL, Redis, BigQuery, Docker.</p>
           </article>
           <article class="card">
-            <h3>Опыт</h3>
-            <p>Коммерческие и учебные проекты: лендинги, SPA, формы, интеграции.</p>
+            <h3 data-i18n="about.expTitle">Опыт</h3>
+            <p data-i18n="about.expText">11+ лет общего опыта, 3+ года в коммерческой разработке frontend/fullstack.</p>
           </article>
           <article class="card">
-            <h3>Направления</h3>
-            <p>Frontend-инженерия, API-связка, UX состояния, code quality.</p>
+            <h3 data-i18n="about.dirTitle">Направления</h3>
+            <p data-i18n="about.dirText">Производительность UI, API-интеграции, надежная логика форм, AI-автоматизация.</p>
           </article>
         </div>
       </section>
 
       <section id="workflow" class="section container reveal">
-        <h2>Как я работаю</h2>
+        <h2 data-i18n="workflow.title">Как я работаю</h2>
         <div class="grid two">
           <article class="card">
-            <h3>Подход к задачам</h3>
-            <p>Декомпозиция, быстрый MVP, проверка edge-case, итеративные улучшения.</p>
+            <h3 data-i18n="workflow.approachTitle">Подход к задачам</h3>
+            <p data-i18n="workflow.approachText">Декомпозиция, API-контракт, MVP, edge-cases, тесты и пошаговые улучшения через PR.</p>
           </article>
           <article class="card">
-            <h3>AI в процессе</h3>
-            <p>
-              Использую AI для ускорения рутины: черновики кода, проверка гипотез,
-              помощь с документацией и тест-кейсами.
-            </p>
+            <h3 data-i18n="workflow.aiTitle">AI в процессе</h3>
+            <p data-i18n="workflow.aiText">Использую AI как ускоритель: черновики, генерация тест-кейсов, рефакторинг идей и техническая документация.</p>
           </article>
         </div>
       </section>
 
       <section id="cases" class="section container reveal">
-        <h2>Кейсы</h2>
+        <h2 data-i18n="cases.title">Кейсы</h2>
         <div class="grid three">
           <article class="card">
-            <h3>Landing + API form</h3>
-            <p>Сверстал интерфейс, подключил backend, валидацию и отправку писем.</p>
+            <h3 data-i18n="cases.c1Title">Лента объявлений 200k+</h3>
+            <p data-i18n="cases.c1Text">Снизил нагрузку браузера примерно на 75% через виртуализацию и оптимизацию состояния.</p>
           </article>
           <article class="card">
-            <h3>SPA с фильтрами</h3>
-            <p>Реализовал клиентскую логику, обработку загрузки и пустых состояний.</p>
+            <h3 data-i18n="cases.c2Title">Pipeline поиска по фото</h3>
+            <p data-i18n="cases.c2Text">Реализовал full pipeline: parser → Redis → Wasabi → embeddings → Qdrant → BigQuery.</p>
           </article>
           <article class="card">
-            <h3>AI helper</h3>
-            <p>Встроил генерацию summary через API с fallback режимом.</p>
+            <h3 data-i18n="cases.c3Title">E2E-платформа</h3>
+            <p data-i18n="cases.c3Text">Поднял Playwright-инфраструктуру с multi-server конфигом и API-auth под критичные сценарии.</p>
           </article>
         </div>
       </section>
 
       <section id="contact" class="section container reveal">
-        <h2>Контакты</h2>
+        <h2 data-i18n="contact.title">Контакты</h2>
         <p class="contacts">
-          Email: <a href="mailto:sskutushev@gmail.com">sskutushev@gmail.com</a> |
+          Email: <a href="mailto:sskutushev@gmail.com" id="email-link">sskutushev@gmail.com</a>
+          <button type="button" class="inline-link" id="copy-email" data-i18n="contact.copy">Скопировать email</button> |
           Telegram: <a href="https://t.me/sskutushev">@sskutushev</a> |
           GitHub: <a href="https://github.com/Sskutushev">Sskutushev</a>
         </p>
@@ -98,23 +106,23 @@
         <form id="contact-form" class="form" novalidate>
           <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" />
           <label>
-            Имя
+            <span data-i18n="form.name">Имя</span>
             <input type="text" name="name" required minlength="2" />
           </label>
           <label>
-            Телефон
+            <span data-i18n="form.phone">Телефон</span>
             <input type="tel" name="phone" required />
           </label>
           <label>
-            Email
+            <span data-i18n="form.email">Email</span>
             <input type="email" name="email" required />
           </label>
           <label>
-            Комментарий
+            <span data-i18n="form.comment">Комментарий</span>
             <textarea name="comment" rows="5" required minlength="10"></textarea>
           </label>
           <div class="form-actions">
-            <button id="submit-btn" type="submit">Отправить</button>
+            <button id="submit-btn" type="submit" data-i18n="form.submit">Отправить</button>
             <button id="ai-btn" type="button" class="secondary">AI summary</button>
           </div>
           <p id="form-status" class="status" role="status" aria-live="polite"></p>

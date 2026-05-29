@@ -1,6 +1,6 @@
-async function notifyTelegram(data) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+async function sendTelegramNotification(config, payload) {
+  const token = config.telegram.botToken;
+  const chatId = config.telegram.chatId;
 
   if (!token || !chatId) {
     return { sent: false, reason: "telegram_not_configured" };
@@ -8,10 +8,10 @@ async function notifyTelegram(data) {
 
   const text = [
     "Новая заявка с сайта",
-    `Имя: ${data.name}`,
-    `Телефон: ${data.phone}`,
-    `Email: ${data.email}`,
-    `Комментарий: ${data.comment}`
+    `Имя: ${payload.name}`,
+    `Телефон: ${payload.phone}`,
+    `Email: ${payload.email}`,
+    `Комментарий: ${payload.comment}`
   ].join("\n");
 
   const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -27,4 +27,4 @@ async function notifyTelegram(data) {
   return { sent: true };
 }
 
-module.exports = { notifyTelegram };
+module.exports = { sendTelegramNotification };

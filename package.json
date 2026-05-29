@@ -4,6 +4,9 @@
   "description": "Developer landing with API form and AI helper",
   "main": "dist/server/index.js",
   "type": "commonjs",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "npm run build:client && tsx watch src/server/index.ts",
     "build": "npm run build:server && npm run build:client",

@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "node server/index.js",
     "start": "node server/index.js",
-    "test": "node --test"
+    "lint": "node --check server/index.js server/app.js server/validation.js server/config/env.js server/controllers/contact.controller.js server/controllers/ai.controller.js server/controllers/health.controller.js server/middleware/request-id.js server/middleware/rate-limit.js server/middleware/error-handler.js server/repositories/email.repository.js server/repositories/openai.repository.js server/repositories/telegram.repository.js server/routes/api.routes.js server/services/contact.service.js server/services/ai.service.js server/utils/http.js public/js/main.js public/js/i18n.js public/js/theme.js public/js/api.js public/js/ui.js public/js/form-controller.js tests/validation.test.js tests/api.integration.test.js",
+    "test": "node --test",
+    "build:docker": "docker build -t labx-developer-landing:local ."
   },
   "dependencies": {
     "dotenv": "^16.4.5",

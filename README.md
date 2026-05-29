@@ -9,6 +9,7 @@ Single-page developer landing with working API form, email delivery, optional Te
 - Email: Nodemailer (SMTP)
 - AI: OpenAI API (optional) with local fallback summary mode
 - Tests: Node built-in test runner
+- CI: GitHub Actions (lint + test + docker build)
 
 ## Features
 
@@ -19,6 +20,18 @@ Single-page developer landing with working API form, email delivery, optional Te
 - Email to site owner + copy email to user
 - Optional Telegram notification
 - AI helper: quick summary generation for form comment
+
+## Project structure
+
+- `public/` static frontend assets
+- `public/js/` modular frontend layers (`api`, `ui`, `i18n`, `theme`, `form-controller`, `main`)
+- `server/routes` route definitions
+- `server/controllers` HTTP controllers
+- `server/services` business logic
+- `server/repositories` external providers (SMTP, Telegram, OpenAI)
+- `server/middleware` cross-cutting middleware (request-id, rate-limit, error handlers)
+- `server/config` runtime config parsing
+- `tests/` unit + API integration tests
 
 ## Quick start with Docker
 
@@ -70,6 +83,13 @@ npm run dev
 
 ```bash
 npm test
+```
+
+## Lint and build checks
+
+```bash
+npm run lint
+npm run build:docker
 ```
 
 ## Form implementation

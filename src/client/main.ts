@@ -8,8 +8,7 @@ const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
 const aiBtn = document.getElementById("ai-btn") as HTMLButtonElement;
 const copyEmailBtn = document.getElementById("copy-email") as HTMLButtonElement;
 const emailLink = document.getElementById("email-link") as HTMLAnchorElement;
-const langRuBtn = document.getElementById("lang-ru") as HTMLButtonElement;
-const langEnBtn = document.getElementById("lang-en") as HTMLButtonElement;
+const langToggleBtn = document.getElementById("lang-toggle") as HTMLButtonElement;
 const themeToggleBtn = document.getElementById("theme-toggle") as HTMLButtonElement;
 const casesGrid = document.getElementById("cases-grid") as HTMLDivElement;
 
@@ -34,12 +33,27 @@ function renderCases() {
 function setTheme() {
   const current = localStorage.getItem("theme") || "dark";
   document.documentElement.setAttribute("data-theme", current);
+  themeToggleBtn.textContent = current === "dark" ? "☾" : "☀";
 }
 
 function toggleTheme() {
   const current = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
   localStorage.setItem("theme", current);
   document.documentElement.setAttribute("data-theme", current);
+  themeToggleBtn.textContent = current === "dark" ? "☾" : "☀";
+}
+
+function syncLanguageButton() {
+  const lang = i18n.getLang();
+  langToggleBtn.textContent = lang === "ru" ? "🇷🇺 RU" : "🇺🇸 EN";
+}
+
+function toggleLanguage() {
+  const next = i18n.getLang() === "ru" ? "en" : "ru";
+  i18n.setLang(next);
+  submitBtn.textContent = i18n.t("form.submit");
+  renderCases();
+  syncLanguageButton();
 }
 
 function readForm() {
@@ -101,18 +115,11 @@ copyEmailBtn.addEventListener("click", async () => {
   }
 });
 
-langRuBtn.addEventListener("click", () => {
-  i18n.setLang("ru");
-  submitBtn.textContent = i18n.t("form.submit");
-  renderCases();
-});
-langEnBtn.addEventListener("click", () => {
-  i18n.setLang("en");
-  submitBtn.textContent = i18n.t("form.submit");
-  renderCases();
-});
+langToggleBtn.addEventListener("click", toggleLanguage);
 themeToggleBtn.addEventListener("click", toggleTheme);
 
 setTheme();
+i18n.apply();
+syncLanguageButton();
 submitBtn.textContent = i18n.t("form.submit");
 renderCases();

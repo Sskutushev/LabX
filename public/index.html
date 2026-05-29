@@ -21,9 +21,12 @@
           <a href="#contact" data-i18n="nav.contact">Контакты</a>
         </div>
         <div class="tools">
-          <button type="button" class="ghost" id="lang-ru">RU</button>
-          <button type="button" class="ghost" id="lang-en">EN</button>
-          <button type="button" class="ghost" id="theme-toggle">Theme</button>
+          <button type="button" class="ghost control-pill" id="lang-toggle" aria-label="Toggle language">
+            🇷🇺 RU
+          </button>
+          <button type="button" class="ghost icon-btn" id="theme-toggle" aria-label="Toggle theme">
+            ☾
+          </button>
         </div>
       </nav>
       <div class="container hero-layout reveal">
@@ -35,8 +38,8 @@
             Строю продуктовые интерфейсы для высоких нагрузок и роста бизнеса
           </h1>
           <p data-i18n="hero.subtitle">
-            11+ лет опыта. Веду фичи end-to-end: от архитектуры и API до релиза, аналитики и
-            поддержки пользователей.
+            Веду фичи end-to-end: от архитектуры и API до релиза, аналитики и поддержки
+            пользователей.
           </p>
           <div class="chips">
             <span>React</span><span>TypeScript</span><span>Next.js</span><span>Node.js</span>
@@ -96,6 +99,10 @@
 
       <section id="cases" class="section container reveal">
         <h2 data-i18n="cases.title">Кейсы</h2>
+        <p class="cases-note" data-i18n="cases.note">
+          Более подробно можно ознакомиться на реальном сайте портфолио:
+          <a href="https://www.sskutushev.site/" target="_blank" rel="noreferrer">sskutushev.site</a>
+        </p>
         <div id="cases-grid" class="grid three"></div>
       </section>
 

@@ -1,0 +1,17 @@
+services:
+  labx-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: labx-developer-landing:local
+    container_name: labx-web
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      PORT: 3000
+      NODE_ENV: production
+      OWNER_EMAIL: owner@example.com
+    restart: unless-stopped

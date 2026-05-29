@@ -15,9 +15,21 @@ Single-page developer landing with working API form, email delivery, optional Te
 - Adaptive landing page with sections: about, workflow, cases, contacts
 - Contact form with states: loading, success, error
 - API validation and error handling
+- Basic anti-spam (honeypot) and API rate limiting for contact endpoint
 - Email to site owner + copy email to user
 - Optional Telegram notification
 - AI helper: quick summary generation for form comment
+
+## Quick start with Docker
+
+1. (Optional) copy `.env.example` to `.env` and set your own values.
+2. Run one command:
+
+```bash
+docker compose up --build
+```
+
+3. Open `http://localhost:3000`
 
 ## Run locally
 
@@ -27,7 +39,7 @@ Single-page developer landing with working API form, email delivery, optional Te
 npm install
 ```
 
-2. Create `.env` (optional, but required for real email/AI/Telegram):
+2. Create `.env` from `.env.example` (you only put your own credentials, no чужие токены):
 
 ```env
 PORT=3000
@@ -64,6 +76,7 @@ npm test
 
 - Frontend sends `POST /api/contact` with `name`, `phone`, `email`, `comment`.
 - Backend validates fields and returns clear errors for invalid input.
+- Backend returns `requestId` for easier debugging and support communication.
 - Backend sends:
   - message to owner (`OWNER_EMAIL`),
   - copy to user (`email` from form).

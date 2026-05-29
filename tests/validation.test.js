@@ -26,6 +26,19 @@ test("validateContactPayload returns errors for invalid payload", () => {
   assert.equal(result.errors.length, 4);
 });
 
+test("validateContactPayload rejects honeypot spam field", () => {
+  const result = validateContactPayload({
+    name: "Sergey",
+    phone: "+7 999 123 45 67",
+    email: "test@example.com",
+    comment: "Достаточно длинный комментарий для прохождения валидации",
+    website: "spam"
+  });
+
+  assert.equal(result.isValid, false);
+  assert.ok(result.errors.includes("Spam check failed"));
+});
+
 test("localSummary trims and shortens long text", () => {
   const input = "x".repeat(180);
   const summary = localSummary(input);

@@ -19,7 +19,8 @@ function getFormData() {
     name: String(data.get("name") || "").trim(),
     phone: String(data.get("phone") || "").trim(),
     email: String(data.get("email") || "").trim(),
-    comment: String(data.get("comment") || "").trim()
+    comment: String(data.get("comment") || "").trim(),
+    website: String(data.get("website") || "").trim()
   };
 }
 
@@ -46,7 +47,8 @@ form.addEventListener("submit", async (event) => {
     form.reset();
   } catch (error) {
     const details = error.errors && error.errors.length ? `: ${error.errors.join("; ")}` : "";
-    setStatus(`Ошибка отправки${details}`, "error");
+    const rid = error.requestId ? ` (requestId: ${error.requestId})` : "";
+    setStatus(`Ошибка отправки${details}${rid}`, "error");
   } finally {
     setLoading(false);
   }

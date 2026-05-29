@@ -9,9 +9,17 @@ function validateContactPayload(payload) {
   const phone = cleanText(payload.phone);
   const email = cleanText(payload.email).toLowerCase();
   const comment = cleanText(payload.comment);
+  const website = cleanText(payload.website);
+
+  if (website) {
+    errors.push("Spam check failed");
+  }
 
   if (!name || name.length < 2) {
     errors.push("Имя должно содержать минимум 2 символа");
+  }
+  if (name.length > 80) {
+    errors.push("Имя слишком длинное");
   }
 
   if (!/^\+?[0-9\s\-()]{7,20}$/.test(phone)) {
@@ -24,6 +32,9 @@ function validateContactPayload(payload) {
 
   if (!comment || comment.length < 10) {
     errors.push("Комментарий должен содержать минимум 10 символов");
+  }
+  if (comment.length > 3000) {
+    errors.push("Комментарий слишком длинный");
   }
 
   return {

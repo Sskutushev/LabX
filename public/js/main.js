@@ -25,6 +25,17 @@ function renderCases() {
         casesGrid.append(article);
     }
 }
+function initRevealAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+}
 function setTheme() {
     const current = localStorage.getItem("theme") || "dark";
     document.documentElement.setAttribute("data-theme", current);
@@ -112,3 +123,4 @@ i18n.apply();
 syncLanguageButton();
 submitBtn.textContent = i18n.t("form.submit");
 renderCases();
+initRevealAnimations();

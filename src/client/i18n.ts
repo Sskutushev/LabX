@@ -106,6 +106,14 @@ export function createI18n(initialLang: "ru" | "en") {
       if (!key) return;
       node.textContent = t(key);
     });
+
+    document.querySelectorAll("[data-i18n-title]").forEach((node) => {
+      const key = node.getAttribute("data-i18n-title");
+      if (!key) return;
+      const text = t(key);
+      node.setAttribute("title", text);
+      node.setAttribute("aria-label", text);
+    });
   }
 
   return {

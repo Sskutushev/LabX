@@ -179,9 +179,35 @@ a {
   padding: 18px;
   box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 .card h3 {
   margin-top: 0;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(circle at var(--mx, 50%) -20%, rgba(35, 214, 203, 0.22), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 24px 52px rgba(0, 8, 30, 0.5);
+  border-color: rgba(135, 196, 255, 0.45);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .cases-note {
@@ -220,6 +246,28 @@ a {
   text-decoration: underline;
   cursor: pointer;
   padding: 0;
+}
+
+.copy-icon-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.copy-icon-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--line);
+  background: rgba(35, 214, 203, 0.12);
+}
+
+.copy-icon {
+  display: block;
 }
 
 .form {
@@ -311,6 +359,33 @@ button {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.section .card {
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  transition-delay: calc(var(--i, 1) * 70ms);
+}
+
+.section .card.from-left {
+  transform: translateX(-24px) translateY(14px) scale(0.98);
+}
+
+.section .card.from-right {
+  transform: translateX(24px) translateY(14px) scale(0.98);
+}
+
+.section .card.from-bottom {
+  transform: translateY(30px) scale(0.98);
+}
+
+.section.visible .card {
+  opacity: 1;
+  transform: translateX(0) translateY(0) scale(1);
 }
 
 @keyframes float {

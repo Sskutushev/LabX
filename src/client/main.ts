@@ -22,12 +22,23 @@ function setStatus(message: string, type = "") {
 function renderCases() {
   const lang = i18n.getLang();
   casesGrid.innerHTML = "";
-  for (const item of cases) {
+  cases.forEach((item, index) => {
     const article = document.createElement("article");
-    article.className = "card";
+    article.className = "card case-card";
+    article.style.setProperty("--i", String(index + 1));
     article.innerHTML = `<h3>${item.title[lang]}</h3><p>${item.text[lang]}</p>`;
     casesGrid.append(article);
-  }
+  });
+}
+
+function applyCardIndices() {
+  const cards = document.querySelectorAll<HTMLElement>(".section .card");
+  cards.forEach((card, index) => {
+    card.style.setProperty("--i", String((index % 6) + 1));
+    if (index % 3 === 0) card.classList.add("from-left");
+    if (index % 3 === 1) card.classList.add("from-bottom");
+    if (index % 3 === 2) card.classList.add("from-right");
+  });
 }
 
 function initRevealAnimations() {
@@ -139,4 +150,5 @@ i18n.apply();
 syncLanguageButton();
 submitBtn.textContent = i18n.t("form.submit");
 renderCases();
+applyCardIndices();
 initRevealAnimations();

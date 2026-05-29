@@ -26,7 +26,9 @@ module.exports = [
         HTMLAnchorElement: "readonly",
         HTMLDivElement: "readonly",
         HTMLTextAreaElement: "readonly",
-        NodeJS: "readonly"
+        HTMLElement: "readonly",
+        NodeJS: "readonly",
+        IntersectionObserver: "readonly"
       }
     },
     plugins: {
